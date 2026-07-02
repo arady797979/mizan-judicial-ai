@@ -275,10 +275,26 @@ const ChatRenderer = (() => {
     
     // Extract suggestions from text (handles optional bullet points before [SUGGESTION])
     const suggestions = [];
-    const cleanText = text.replace(/(?:^|\n)\s*(?:[-*]\s*|\d+\.\s*)?\[SUGGESTION\]\s*(.+)/g, (match, p1) => {
+    let cleanText = text.replace(/(?:^|\n)\s*(?:[-*]\s*|\d+\.\s*)?\[SUGGESTION\]\s*(.+)/g, (match, p1) => {
       suggestions.push(p1.trim());
       return "";
     });
+
+    // Fallback: If AI ignores the tag and just writes a list under "إجراءات مقترحة"
+    const fallbackRegex = /(?:💡\s*)?(?:إجراءات|مسارات)\s*(?:قضائية\s*)?مقترحة\s*:?\s*\n([\s\S]+)$/i;
+    const fallbackMatch = cleanText.match(fallbackRegex);
+    if (fallbackMatch) {
+      const listText = fallbackMatch[1];
+      cleanText = cleanText.replace(fallbackRegex, ""); // Remove the section from chat
+      
+      const lines = listText.split('\n');
+      for (const line of lines) {
+        const trimmed = line.replace(/^[-*•\d.\s]+/, "").trim();
+        if (trimmed.length > 5 && !trimmed.includes("SUGGESTION")) {
+          suggestions.push(trimmed);
+        }
+      }
+    }
 
     const div = document.createElement("div");
     div.className = "message message--assistant";
