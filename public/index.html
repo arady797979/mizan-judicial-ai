@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ميزان — المساعد القانوني الذكي | وزارة العدل، سلطنة عُمان</title>
+  <meta name="description" content="المساعد القانوني الذكي للمحاكم العُمانية — مدعوم بالذكاء الاصطناعي لمساعدة القضاة والمختصين القانونيين" />
+  <meta name="robots" content="noindex, nofollow" /><!-- Gov internal tool -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!--  TOP HEADER — Oman Gov Branding               -->
+  <!-- ══════════════════════════════════════════════ -->
+  <header class="gov-header" role="banner">
+    <div class="gov-header__stripe"></div>
+    <div class="gov-header__inner">
+      <div class="gov-header__identity">
+        <div class="gov-header__emblem" aria-label="شعار وزارة العدل">
+          <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- Enhanced Khanjar and Swords Emblem -->
+            <circle cx="30" cy="30" r="28" fill="#8B0000" stroke="#C8A84B" stroke-width="2"/>
+            <path d="M22 15 L38 45 M38 15 L22 45" stroke="#C8A84B" stroke-width="3" stroke-linecap="round"/>
+            <path d="M30 18 C35 18 35 35 30 40 C25 35 25 18 30 18 Z" fill="#C8A84B" stroke="#8B0000" stroke-width="1"/>
+            <circle cx="30" cy="22" r="3" fill="#8B0000"/>
+            <path d="M28 28 L32 28 L30 35 Z" fill="#8B0000"/>
+          </svg>
+        </div>
+        <div class="gov-header__title-block">
+          <span class="gov-header__country">سلطنة عُمان</span>
+          <h1 class="gov-header__ministry">وزارة العدل والشؤون القانونية</h1>
+        </div>
+      </div>
+      
+      <div class="gov-header__utils">
+        <div class="gov-header__clock" id="gov-clock">
+          <span id="clock-time">--:--</span>
+          <span class="gov-header__clock-date" id="clock-date">----/--/--</span>
+        </div>
+        <button class="theme-toggle-btn" id="theme-toggle" aria-label="تبديل المظهر" title="تبديل المظهر (فاتح/داكن)">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+      </div>
+
+      <div class="gov-header__flag" aria-label="علم سلطنة عُمان" role="img">
+        <div class="flag-stripe flag-stripe--red"></div>
+        <div class="flag-stripe flag-stripe--white"></div>
+        <div class="flag-stripe flag-stripe--green"></div>
+        <div class="flag-emblem">
+          <svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="8" height="24" fill="#8B0000"/>
+            <rect x="8" width="22" height="8" fill="#8B0000"/>
+            <rect x="8" y="8" width="22" height="8" fill="white"/>
+            <rect x="8" y="16" width="22" height="8" fill="#006400"/>
+            <path d="M4 7 L7 12 L4 17" stroke="#C8A84B" stroke-width="1" fill="none"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!--  APP SHELL                                    -->
+  <!-- ══════════════════════════════════════════════ -->
+  <main class="app-shell" id="app-shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar" role="complementary" aria-label="لوحة التحكم">
+      <div class="sidebar__logo-block">
+        <div class="sidebar__logo-icon" aria-hidden="true">⚖️</div>
+        <div>
+          <div class="sidebar__logo-name">ميزان</div>
+          <div class="sidebar__logo-sub">المساعد القانوني الذكي</div>
+        </div>
+      </div>
+
+      <button class="btn-new-chat" id="btn-new-chat" aria-label="محادثة جديدة">
+        <span class="btn-new-chat__icon" aria-hidden="true">＋</span>
+        محادثة جديدة
+      </button>
+
+      <nav class="sidebar__nav" aria-label="أدوات سريعة">
+        <div class="sidebar__section-label">إجراءات سريعة</div>
+        <button class="sidebar__tool-btn" data-prompt="أريد الاستعلام عن ملف الدعوى رقم..." aria-label="استعلام عن قضية">
+          <span aria-hidden="true">📂</span> استعلام عن ملف دعوى
+        </button>
+        <button class="sidebar__tool-btn" data-prompt="استخراج بيانات المدعى عليه في القضية..." aria-label="بيانات المدعى عليه">
+          <span aria-hidden="true">👤</span> بيانات المدعى عليه
+        </button>
+        <button class="sidebar__tool-btn" data-prompt="أريد تلخيص مستند قانوني مرفق" aria-label="تلخيص مستند">
+          <span aria-hidden="true">📄</span> تلخيص مستند
+        </button>
+        <button class="sidebar__tool-btn" data-prompt="أريد صياغة مسودة حكم وفق الأعراف العُمانية" aria-label="صياغة مسودة حكم">
+          <span aria-hidden="true">⚖️</span> صياغة مسودة حكم
+        </button>
+        <button class="sidebar__tool-btn" data-prompt="ابحث في قانون الإجراءات المدنية العُماني" aria-label="بحث في القانون">
+          <span aria-hidden="true">🔍</span> بحث في القانون
+        </button>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="sidebar__disclaimer">
+          <span aria-hidden="true">🔒</span>
+          جميع البيانات سرية ومحمية
+        </div>
+        <div class="sidebar__version">الإصدار 1.0.0 — للاستخدام الداخلي فقط</div>
+      </div>
+    </aside>
+
+    <!-- Chat area -->
+    <section class="chat-area" role="main" aria-label="منطقة المحادثة">
+
+      <!-- Chat header -->
+      <div class="chat-header">
+        <button class="sidebar-toggle" id="sidebar-toggle" aria-label="إظهار/إخفاء الشريط الجانبي" aria-expanded="true">
+          <span class="sidebar-toggle__bar"></span>
+          <span class="sidebar-toggle__bar"></span>
+          <span class="sidebar-toggle__bar"></span>
+        </button>
+        <div class="chat-header__title">
+          <span class="status-dot" id="status-dot" aria-hidden="true"></span>
+          <span id="chat-title">محادثة جديدة</span>
+        </div>
+        <div class="chat-header__actions">
+          <button class="icon-btn" id="btn-clear-chat" title="مسح المحادثة" aria-label="مسح المحادثة">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Messages container -->
+      <div class="messages" id="messages" role="log" aria-live="polite" aria-label="سجل المحادثة">
+        <!-- Welcome state -->
+        <div class="welcome-state" id="welcome-state" aria-label="شاشة الترحيب">
+          <div class="welcome-state__emblem" aria-hidden="true">⚖️</div>
+          <h2 class="welcome-state__title">أهلاً بك فضيلة القاضي</h2>
+          <p class="welcome-state__subtitle">كيف يمكنني مساعدتك اليوم؟ يمكنك استعراض ملف قضية، سحب بيانات مدعى عليه، أو البحث في التشريعات.</p>
+          <div class="welcome-state__features">
+            <div class="feature-card">
+              <div class="feature-card__icon" aria-hidden="true">📂</div>
+              <div class="feature-card__text">
+                <strong>ملفات الدعاوى</strong>
+                <span>استعلم عن تفاصيل وملفات القضايا المسجلة</span>
+              </div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-card__icon" aria-hidden="true">👤</div>
+              <div class="feature-card__text">
+                <strong>بيانات الأطراف</strong>
+                <span>اسحب بيانات المدعى عليهم والمدعين</span>
+              </div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-card__icon" aria-hidden="true">⚖️</div>
+              <div class="feature-card__text">
+                <strong>صياغة الأحكام</strong>
+                <span>استعن بالذكاء في صياغة المسودات وتلخيص المذكرات</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Attachment preview bar -->
+      <div class="attachment-bar" id="attachment-bar" aria-label="المرفقات" hidden>
+        <div class="attachment-bar__label">المرفقات:</div>
+        <div class="attachment-bar__list" id="attachment-list" role="list"></div>
+      </div>
+
+      <!-- Input area -->
+      <div class="input-area" role="form" aria-label="إدخال الرسالة">
+        <div class="input-box">
+          <button class="input-box__attach" id="btn-attach" title="إرفاق مستند" aria-label="إرفاق مستند">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>
+          </button>
+          <input type="file" id="file-input" aria-hidden="true" accept=".pdf,.txt,.docx,.jpg,.jpeg,.png,.webp" multiple style="display:none" />
+          <textarea
+            class="input-box__textarea"
+            id="message-input"
+            placeholder="اكتب سؤالك القانوني هنا... يمكنك أيضاً إرفاق مستند"
+            rows="1"
+            aria-label="رسالتك"
+            dir="auto"
+          ></textarea>
+          <button class="input-box__send" id="btn-send" title="إرسال" aria-label="إرسال الرسالة" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+        <div class="input-area__disclaimer">
+          ميزان مساعد استشاري — لا يُعدّ الرد فتوى قانونية رسمية
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="/app.js" type="module"></script>
+</body>
+</html>

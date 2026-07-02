@@ -1,0 +1,20 @@
+{
+  "name": "omani-judicial-ai",
+  "version": "1.0.0",
+  "description": "Omani Judicial AI Assistant — Cloudflare Workers powered legal chatbot for the Ministry of Justice",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev --port 8787",
+    "deploy": "wrangler deploy",
+    "type-check": "tsc --noEmit",
+    "kv:create": "wrangler kv namespace create SESSIONS",
+    "kv:create:preview": "wrangler kv namespace create SESSIONS --preview",
+    "r2:create": "wrangler r2 bucket create omani-judicial-docs",
+    "setup": "npm run kv:create && npm run kv:create:preview && npm run r2:create"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241205.0",
+    "typescript": "^5.7.2",
+    "wrangler": "^4.0.0"
+  }
+}

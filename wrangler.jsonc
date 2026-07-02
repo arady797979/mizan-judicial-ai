@@ -1,0 +1,38 @@
+{
+	// Omani Judicial AI Assistant — Cloudflare Worker
+	"name": "omani-judicial-ai",
+	"main": "src/index.ts",
+	"compatibility_date": "2025-01-01",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	// Cloudflare AI binding
+	"ai": {
+		"binding": "AI"
+	},
+	// KV namespace for session state
+	"kv_namespaces": [
+		{
+			"binding": "SESSIONS",
+			"id": "592429d5727947c78aa6381183fed559",
+			"preview_id": "6755239e9aa54297addc33d2a1aa6edf"
+		}
+	],
+	// R2 bucket for document uploads
+	"r2_buckets": [
+		{
+			"binding": "DOCUMENTS",
+			"bucket_name": "omani-judicial-docs"
+		}
+	],
+	// Static assets (frontend)
+	"assets": {
+		"directory": "./public",
+		"binding": "ASSETS"
+	},
+	// Secrets (set via wrangler secret put)
+	// ALLOWED_ORIGINS — comma-separated CORS origins
+	"vars": {
+		"ENVIRONMENT": "development"
+	}
+}
