@@ -99,7 +99,7 @@ export const lawCorpusTool: Tool = {
     if (results.length === 0) {
       return JSON.stringify({
         error: "NOT_FOUND_IN_LOCAL_DATABASE",
-        message: `لم يتم العثور على نصوص تطابق هذه الكلمات: "${args.query}" في قاعدة البيانات المصغرة. إذا كانت لديك معرفة قانونية داخلية قوية حول هذا الموضوع (مثل نصوص قانونية أخرى أو مبادئ عامة)، أجب المستخدم بذكاء واحترافية بناءً على معرفتك، مع التنويه بلطف أن النص ليس في قاعدة البيانات المرفقة. ولا تنسَ إضافة إجراءات [SUGGESTION] في النهاية.`
+        message: `لم يتم العثور على نصوص تطابق هذه الكلمات: "${args.query}" في قاعدة البيانات المصغرة. إذا كانت لديك معرفة قانونية داخلية قوية حول هذا الموضوع (مثل نصوص قانونية أخرى أو مبادئ عامة)، أجب المستخدم بذكاء واحترافية بناءً على معرفتك، مع التنويه بلطف أن النص ليس في قاعدة البيانات المرفقة. تذكر أنك تتحدث مع قاضٍ (يُمنع اقتراح استشارة محامٍ). ولا تنسَ إضافة إجراءات [SUGGESTION] في النهاية.`
       });
     }
 
@@ -130,7 +130,7 @@ export const lawCorpusTool: Tool = {
 
     return JSON.stringify({
       results: mappedResults,
-      instruction_to_ai: antiHallucinationWarning || "Use these excerpts exactly as written. Reply to the user now. ALWAYS remember to append [SUGGESTION] actions at the end."
+      instruction_to_ai: antiHallucinationWarning || "قم بصياغة إجابة قانونية احترافية ومنسقة ومنظمة بناءً على هذه النصوص. تذكر دائماً هويتك كقاضٍ (لا تقترح أبداً استشارة محامٍ). اختم إجابتك بـ [SUGGESTION] لإجراءات محكمة فعلية."
     });
   }
 };
