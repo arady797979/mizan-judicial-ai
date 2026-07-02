@@ -273,9 +273,9 @@ const ChatRenderer = (() => {
     removeTypingIndicator();
     hideWelcome();
     
-    // Extract suggestions from text
+    // Extract suggestions from text (handles optional bullet points before [SUGGESTION])
     const suggestions = [];
-    const cleanText = text.replace(/\[SUGGESTION\]\s*(.+)/g, (match, p1) => {
+    const cleanText = text.replace(/(?:^|\n)\s*(?:[-*]\s*|\d+\.\s*)?\[SUGGESTION\]\s*(.+)/g, (match, p1) => {
       suggestions.push(p1.trim());
       return "";
     });
